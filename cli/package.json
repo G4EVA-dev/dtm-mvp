@@ -1,14 +1,13 @@
 {
   "name": "dtm-cli",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "A developer tool for safe, intelligent dependency upgrades",
   "main": "index.js",
   "bin": {
     "dtm": "index.js"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "prepublishOnly": "npm run test"
+    "test": "echo \"No tests yet\" && exit 0"
   },
   "keywords": [
     "dependency",
@@ -19,7 +18,7 @@
     "javascript",
     "rust"
   ],
-  "author": "EricBlak <ericangeloawa@gmail.com> && Glennzy <tanzeglenn@gmail.com>   ",
+  "author": "EricBlak <ericangeloawa@gmail.com> && Glennzy <tanzeglenn@gmail.com>",
   "license": "MIT",
   "engines": {
     "node": ">=14.0.0"

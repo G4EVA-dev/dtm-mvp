@@ -15,8 +15,30 @@ A powerful CLI tool that helps developers safely upgrade their project dependenc
 
 ## Installation
 
+### Prerequisites
+
+- Node.js >= 14.0.0
+- Python 3.x (for Python package support)
+- Rust (for Rust package support)
+
+### Global Installation
+
 ```bash
 npm install -g dtm-cli
+```
+
+### Local Development
+
+```bash
+# Clone the repository
+git clone https://github.com/G4EVA-dev/dtm-mvp.git
+cd dtm-mvp/cli
+
+# Install dependencies
+npm install
+
+# Link for local development
+npm link
 ```
 
 ## Usage
@@ -38,16 +60,16 @@ dtm upgrade serde      # Rust package
 3. Identifies the latest working version
 4. Provides upgrade instructions
 
-## Requirements
-
-- Node.js >= 14.0.0
-- Python 3.x (for Python package support)
-- Rust (for Rust package support)
-
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
 ## License
 
-MIT © [Anchor] 
+MIT © EricBlak and Glennzy 
