@@ -24,7 +24,7 @@ A powerful CLI tool that helps developers safely upgrade their project dependenc
 ### Global Installation
 
 ```bash
-npm install -g dtm-cli
+npm install -g dep-time-machine
 ```
 
 ### Local Development

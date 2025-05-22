@@ -1,5 +1,5 @@
 {
-  "name": "dtm-cli",
+  "name": "dep-time-machine",
   "version": "0.1.0",
   "description": "A developer tool for safe, intelligent dependency upgrades",
   "main": "index.js",
@@ -16,7 +16,9 @@
     "automation",
     "python",
     "javascript",
-    "rust"
+    "rust",
+    "time-machine",
+    "dep-upgrade"
   ],
   "author": "EricBlak <ericangeloawa@gmail.com> && Glennzy <tanzeglenn@gmail.com>",
   "license": "MIT",
