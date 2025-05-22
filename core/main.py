@@ -1,7 +1,7 @@
 import sys
 import json
 import os
-from typing import List, Tuple, Optional
+from typing import List, Tuple, Optional, Dict
 from adapters.python_adapter import PythonAdapter
 from adapters.js_adapter import JSAdapter
 from adapters.rust_adapter import RustAdapter
@@ -32,14 +32,15 @@ def get_test_command(language: str) -> str:
         return "cargo test"
     return "pytest"
 
-def binary_search_versions(versions: List[str], adapter, test_command: str) -> Tuple[Optional[str], Optional[str]]:
+def binary_search_versions(versions: List[str], adapter, test_command: str) -> Tuple[Optional[str], Optional[str], Optional[Dict]]:
     """Find the latest working version using binary search."""
     if not versions:
-        return None, None
+        return None, None, None
 
     left, right = 0, len(versions) - 1
     latest_working = None
     first_broken = None
+    dependency_conflicts = None
 
     while left <= right:
         mid = (left + right) // 2
@@ -59,9 +60,19 @@ def binary_search_versions(versions: List[str], adapter, test_command: str) -> T
         else:
             print(f"❌ Failed to install version {version}")
             first_broken = version
+            # Check for dependency conflicts
+            if hasattr(adapter, 'get_dependency_conflicts'):
+                conflicts = adapter.get_dependency_conflicts(version)
+                if conflicts:
+                    dependency_conflicts = conflicts
+                    print("\n🔍 Dependency conflicts detected:")
+                    for package, issues in conflicts.items():
+                        print(f"  - {package}:")
+                        for issue in issues:
+                            print(f"    {issue}")
             right = mid - 1
 
-    return latest_working, first_broken
+    return latest_working, first_broken, dependency_conflicts
 
 def main():
     if len(sys.argv) < 3 or sys.argv[1] != 'upgrade':
@@ -86,13 +97,19 @@ def main():
     test_command = get_test_command(language)
     
     print("\n🔬 Starting binary search for latest working version...")
-    latest_working, first_broken = binary_search_versions(versions, adapter, test_command)
+    latest_working, first_broken, dependency_conflicts = binary_search_versions(versions, adapter, test_command)
 
     print("\n📊 Results:")
     if latest_working:
         print(f"✅ Latest working version: {latest_working}")
     if first_broken:
         print(f"❌ First broken version: {first_broken}")
+    if dependency_conflicts:
+        print("\n⚠️ Dependency conflicts found:")
+        for package, issues in dependency_conflicts.items():
+            print(f"  - {package}:")
+            for issue in issues:
+                print(f"    {issue}")
 
     # Output JSON for CLI to parse
     result = {
@@ -100,6 +117,7 @@ def main():
         "language": language,
         "latest_working": latest_working,
         "first_broken": first_broken,
+        "dependency_conflicts": dependency_conflicts,
         "total_versions": len(versions)
     }
     print("\n" + json.dumps(result))
