@@ -1,0 +1,45 @@
+{
+  "name": "dtm-cli",
+  "version": "1.0.0",
+  "description": "A developer tool for safe, intelligent dependency upgrades",
+  "main": "index.js",
+  "bin": {
+    "dtm": "index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublishOnly": "npm run test"
+  },
+  "keywords": [
+    "dependency",
+    "upgrade",
+    "testing",
+    "automation",
+    "python",
+    "javascript",
+    "rust"
+  ],
+  "author": "EricBlak <ericangeloawa@gmail.com> && Glennzy <tanzeglenn@gmail.com>   ",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/G4EVA-dev/dtm-mvp"
+  },
+  "bugs": {
+    "url": "https://github.com/G4EVA-dev/dtm-mvp/issues"
+  },
+  "homepage": "https://github.com/G4EVA-dev/dtm-mvp#readme",
+  "files": [
+    "index.js",
+    "README.md",
+    "LICENSE"
+  ],
+  "dependencies": {
+    "commander": "^11.0.0",
+    "chalk": "^4.1.2",
+    "inquirer": "^8.2.5"
+  }
+}
